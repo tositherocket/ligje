@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Laws</title>
+  <title>LawBase</title>
 
   <!-- PWA Meta Tags -->
-  <meta name="application-name" content="Laws" />
-  <meta name="description" content="App for viewing and searching laws" />
+  <meta name="application-name" content="LawBase" />
+  <meta name="description" content="LawBase — Search and browse laws" />
   <meta name="theme-color" content="#4361ee" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="Laws" />
+  <meta name="apple-mobile-web-app-title" content="LawBase" />
   <link rel="apple-touch-icon" id="appleTouchIcon" />
+  <link rel="icon" id="faviconIcon" type="image/png" />
   <link rel="manifest" id="pwaManifest" />
 
   <!-- Inline PWA Setup -->
@@ -31,8 +32,8 @@
 
     function injectManifest(icon192, icon512){
       const manifest = {
-        name: 'Laws', short_name: 'Laws',
-        description: 'App for viewing and searching laws',
+        name: 'LawBase', short_name: 'LawBase',
+        description: 'LawBase — Search and browse laws',
         start_url: '.', display: 'standalone',
         background_color: '#f5f7fb', theme_color: '#4361ee', orientation: 'any',
         icons: [
@@ -93,6 +94,8 @@ self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWi
     window.addEventListener('load', () => {
       makePng(192, png192 => { makePng(512, png512 => { injectManifest(png192, png512); }); });
       document.getElementById('appleTouchIcon').href = svgB64;
+      const faviconEl = document.getElementById('faviconIcon');
+      if(faviconEl) makePng(64, png64 => { faviconEl.href = png64; });
       registerSW();
       setTimeout(showiOSHint, 1500);
     });
@@ -820,7 +823,7 @@ self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWi
     <header>
       <div class="nav">
         <div class="nav-left">
-          <div class="brand"><i class="fas fa-scale-balanced"></i> Laws</div>
+          <div class="brand"><i class="fas fa-scale-balanced"></i> LawBase</div>
         </div>
         <div class="nav-right">
           <button id="addLawBtn" class="btn btn-primary"><i class="fas fa-plus"></i> Add</button>
@@ -1474,7 +1477,7 @@ self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWi
   (function() {
     var UI = {
       sq: {
-        brand:'Ligjet', addBtn:'Shto', settingsBtn:'Cilësimet',
+        brand:'LawBase', addBtn:'Shto', settingsBtn:'Cilësimet',
         searchPh:'Kërko sipas nenit/titullit (shembull: 12 ose "Neni 12")',
         searchBtn:'Kërko', clearBtn:'Pastro',
         fulltextPh:'Kërko në të gjithë tekstin',
@@ -1493,7 +1496,7 @@ self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWi
         hitNav:function(i,n){return 'Rezultati '+i+' nga '+n;}, noHits:'⚠️ Nuk ka rezultate',
       },
       mk: {
-        brand:'Закони', addBtn:'Додај', settingsBtn:'Поставки',
+        brand:'LawBase', addBtn:'Додај', settingsBtn:'Поставки',
         searchPh:'Пребарај по член/наслов (пример: 12 или „Член 12")',
         searchBtn:'Пребарај', clearBtn:'Исчисти',
         fulltextPh:'Пребарај низ целиот текст',
@@ -1512,7 +1515,7 @@ self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWi
         hitNav:function(i,n){return 'Погодок '+i+' од '+n;}, noHits:'⚠️ Нема погодоци',
       },
       en: {
-        brand:'Laws', addBtn:'Add', settingsBtn:'Settings',
+        brand:'LawBase', addBtn:'Add', settingsBtn:'Settings',
         searchPh:'Search by article/title (e.g. 12 or Article 12)',
         searchBtn:'Search', clearBtn:'Clear',
         fulltextPh:'Full-text search (e.g. sanctions)',
